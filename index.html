@@ -234,6 +234,33 @@
 </section>
 
 <style>
+
+@media screen and (max-width: 1023px) {
+  .navbar-brand {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .navbar-burger {
+    margin: 0;  /* 移除默认的 margin */
+    position: relative;
+  }
+  
+  /* 确保展开的菜单也居中 */
+  .navbar-menu.is-active {
+    text-align: center;
+  }
+  
+  .navbar-menu.is-active .navbar-start {
+    justify-content: center;
+  }
+  
+  .navbar-menu.is-active .navbar-item {
+    display: inline-block;
+  }
+}
+
 /* widen overall container */
 .wide-container { max-width: 1440px; margin-inline: auto; }
 
@@ -264,6 +291,97 @@
   object-fit: contain;
   margin-top: .5rem;
 }
+
+/* 去除竖向滚动条 */
+.hero.is-light .hero-body {
+  overflow-y: visible;  /* 或者 auto，不要用 hidden */
+  overflow-x: hidden;   /* 只隐藏横向溢出 */
+}
+
+/* 确保视频高度自适应 */
+.video-gif-triplet video {
+  max-height: 400px;  /* 限制最大高度，避免过高 */
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* 确保 GIF 也有合理高度 */
+.video-gif-triplet img {
+  max-height: 400px;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* 移动端优化 */
+@media (max-width: 768px) {
+  .video-gif-triplet video,
+  .video-gif-triplet img {
+    max-height: 250px;  /* 移动端更小的高度 */
+  }
+}
+
+.hero.is-light.is-small .hero-body {
+  min-height: auto;  /* 移除最小高度限制 */
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+/* 针对这个特定容器移除滚动条 */
+.container.is-fluid.wide-container {
+  overflow: visible !important;
+  max-height: none !important;
+  height: auto !important;
+}
+
+@media screen and (max-width: 768px) {
+  /* 隐藏表头 */
+  .video-header {
+    display: none;
+  }
+  
+  /* 改变每个任务的布局 */
+  .video-gif-triplet {
+    flex-direction: column;
+  }
+  
+  .video-gif-triplet .column {
+    flex: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-bottom: 1rem;
+  }
+  
+  /* 在每个内容前添加标签 */
+  .video-gif-triplet .task-input::before {
+    content: "User's Input";
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #666;
+    text-align: center;
+  }
+  
+  .video-gif-triplet .media-col:not(.result-col)::before {
+    content: "Modeling Process";
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #666;
+    text-align: center;
+  }
+  
+  .video-gif-triplet .result-col::before {
+    content: "Result";
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #666;
+    text-align: center;
+  }
+}
+
 </style>
 
 
@@ -440,6 +558,40 @@
   margin-bottom:0.8rem;
   font-weight:600;
 }
+
+/* 修复横向溢出问题 - 在父容器上设置 */
+.hero.is-light .hero-body {
+  overflow-y: visible;
+  overflow-x: hidden;  /* 防止横向滚动 */
+}
+
+.hero.is-light .container {
+  overflow-x: hidden;  /* 确保容器不会横向溢出 */
+}
+
+/* 限制 Swiper 容器宽度 */
+.swiper-container.decomposed-slider {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* 移动端优化 */
+@media (max-width: 768px) {
+  .hero.is-light {
+    overflow-x: hidden;
+  }
+  
+  .decomposed-slider .video-card {
+    padding: 0 0.5rem;
+  }
+  
+  /* 确保视频不会溢出 */
+  .decomposed-slider video {
+    max-width: 100%;
+    height: auto;
+    max-height: 480px;
+  }
+}
 </style>
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
@@ -447,6 +599,7 @@
 new Swiper('.decomposed-slider',{
   slidesPerView:1,           // 每屏只显示 1 个卡片
   spaceBetween:32,
+  watchOverflow: true,
   navigation:{
     nextEl:'.swiper-button-next',
     prevEl:'.swiper-button-prev'
@@ -456,9 +609,9 @@ new Swiper('.decomposed-slider',{
     clickable:true
   },
   breakpoints:{
-    0:{slidesPerView:1},
-    768:{slidesPerView:1},
-    1024:{slidesPerView:1}
+    0:{slidesPerView:1, spaceBetween:20},     // 移动端减少间距
+    768:{slidesPerView:1, spaceBetween:32},
+    1024:{slidesPerView:1, spaceBetween:32}
   }
 });
 </script>
@@ -678,7 +831,7 @@ new Swiper('.bimgent-slider',{
     </div> -->
     <div class="columns is-centered">
       <div class="column is-8">
-        <div class="content">
+        <div class="content has-text-centered">
           <p>
             This website template is adapted from source at <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
           </p>
