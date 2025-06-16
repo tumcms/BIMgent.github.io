@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="BIMgent: Towards Autonomous Building Modeling via Computer-use Agents">
+  <meta name="keywords" content="BIM, GUI agents, Multi-agent framework">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BIMgent: Towards Autonomous Building Modeling via Computer-use Agents</title>
+
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/bimgenticon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://www.cee.ed.tum.de/ccbe/home/">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://github.com/dcy0577/Text2BIM">
+            Text2BIM
+          </a>
+          <a class="navbar-item" href="https://github.com/dcy0577/BIM-Command-Recommendation">
+            Predictive Modeling
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">BIMgent: Towards Autonomous Building Modeling via Computer-use Agents</h1>
+          <div class="has-text-centered" style="margin-bottom: 1.5rem;">
+            <span style="font-size: 1.2rem; font-family: 'Inter', 'Segoe UI', Arial, sans-serif; font-weight: 500; color: black;">
+              ICML 2025 Workshop on Computer Use Agents
+            </span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=u4iSbGwAAAAJ&hl=en">Zihan Deng</a><sup>1,2</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=ZdNOee8AAAAJ&hl=en">Changyu Du</a><sup>1,2</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=HQuAxd0AAAAJ&hl=en">Stavros Nousias</a><sup>1,2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=9LSpz44AAAAJ&hl=en">André Borrmann</a><sup>1,2</sup>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Chair of Computing in Civil and Building Engineering, Technical University of Munich</span>
+            <span class="author-block"><sup>2</sup>TUM Georg Nemetschek Institute</span>
+          </div>
+
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2506.07217"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a class="external-link button is-normal is-rounded is-dark is-disabled" style="background-color: #808080; cursor: not-allowed;">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser" style="margin-top: -1rem;">
+  <div class="container is-max-desktop">
+      <div class="hero-body">
+          <img src="./static/BIMgent_images/general_workflow1.png" height="100%">
+          <h2 class="subtitle has-text-centered">
+              We present <span class="dnerf">BIMgent</span>, the first LLM-powered agentic framework to explore autonomous building modeling through computer control.
+          </h2>
+      </div>
+  </div>
+</section>
+
+
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container is-fluid wide-container">
+      <h2 class="subtitle has-text-centered" style="margin-bottom: 3rem;">
+        <b>BIMgent</b> generates BIM model in Vectorworks via GUI operations.
+      </h2>
+
+      <div class="video-list">
+        <!-- column titles -->
+        <div class="columns is-vcentered video-header">
+          <div class="column task-input"><h4 class="title is-6 has-text-centered">User&#39;s Input</h4></div>
+          <div class="column media-col"><h4 class="title is-6 has-text-centered">Modeling Process</h4></div>
+          <div class="column media-col result-col"><h4 class="title is-6 has-text-centered">Result</h4></div>
+        </div>
+
+        <!-- task1 -->
+        <div class="columns is-vcentered video-gif-triplet">
+          <div class="column task-input">
+            <p>Generate a one-storey office building with a large open workspace occupying most of the floor area. The layout should also include two enclosed meeting rooms, a manager’s office, a small pantry, and two restrooms.</p>
+          </div>
+          <div class="column media-col">
+            <video autoplay controls muted loop playsinline style="width:100%;height:auto;">
+              <source src="./static/BIMgent_videos/Full_videos/task1.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="column media-col result-col">
+            <img src="./static/BIMgent_gifs/task1.gif" alt="task1 GIF" style="width:100%;height:auto;object-fit:contain;">
+          </div>
+        </div>
+
+        <!-- task3 -->
+        <div class="columns is-vcentered video-gif-triplet">
+          <div class="column task-input">
+            <p>Create a two-storey rectangular residential building designed for a single family. The layout must include a living room, kitchen, bathroom, master bedroom, and one additional bedroom.</p>
+          </div>
+          <div class="column media-col">
+            <video autoplay controls muted loop playsinline style="width:100%;height:auto;">
+              <source src="./static/BIMgent_videos/Full_videos/task3.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="column media-col result-col">
+            <img src="./static/BIMgent_gifs/task3.gif" alt="task3 GIF" style="width:100%;height:auto;object-fit:contain;">
+          </div>
+        </div>
+
+        <!-- task6 -->
+        <div class="columns is-vcentered video-gif-triplet">
+          <div class="column task-input">
+            <p>Generate a one-storey octagonal building based on the hand-drawn sketch:</p>
+            <img src="./static/BIMgent_images/prompt_06.png" alt="Prompt for task6" class="prompt-img">
+          </div>
+          <div class="column media-col">
+            <video autoplay controls muted loop playsinline style="width:100%;height:auto;">
+              <source src="./static/BIMgent_videos/Full_videos/task6.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="column media-col result-col">
+            <img src="./static/BIMgent_gifs/task6.gif" alt="task6 GIF" style="width:100%;height:auto;object-fit:contain;">
+          </div>
+        </div>
+
+        <!-- task12 -->
+        <div class="columns is-vcentered video-gif-triplet">
+          <div class="column task-input">
+            <p>Generate a one-floor building based on the image:</p>
+            <img src="./static/BIMgent_images/prompt_012.png" alt="Prompt for task12" class="prompt-img">
+          </div>
+          <div class="column media-col">
+            <video autoplay controls muted loop playsinline style="width:100%;height:auto;">
+              <source src="./static/BIMgent_videos/Full_videos/task12.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="column media-col result-col">
+            <img src="./static/BIMgent_gifs/task12.gif" alt="task12 GIF" style="width:100%;height:auto;object-fit:contain;">
+          </div>
+        </div>
+
+        <!-- task16 -->
+        <div class="columns is-vcentered video-gif-triplet">
+          <div class="column task-input">
+            <p>Generate a building model based on a hand-drawn octagon floorplan, modifying the interior layout to include four rooms instead of three:</p>
+            <img src="./static/BIMgent_images/prompt_06.png" alt="Prompt for task16" class="prompt-img">
+          </div>
+          <div class="column media-col">
+            <video autoplay controls muted loop playsinline style="width:100%;height:auto;">
+              <source src="./static/BIMgent_videos/Full_videos/task16.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="column media-col result-col">
+            <img src="./static/BIMgent_gifs/task16.gif" alt="task16 GIF" style="width:100%;height:auto;object-fit:contain;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+/* widen overall container */
+.wide-container { max-width: 1440px; margin-inline: auto; }
+
+/* header row */
+.video-header { margin-bottom: .75rem; }
+
+/* data rows */
+.video-gif-triplet {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+/* column widths: 30% · 40% · 30% */
+.task-input                 { flex: 0 0 30%; }
+.media-col:not(.result-col) { flex: 0 0 40%; }
+.media-col.result-col       { flex: 0 0 30%; }
+
+/* text styles */
+.task-input p               { font-size: .95rem; line-height: 1.4; font-weight: 700; }
+.video-header .task-input h4{ font-weight: 700; }
+
+/* prompt image */
+.task-input .prompt-img {
+  display: block;
+  width: 100%;
+  height: 120px;
+  object-fit: contain;
+  margin-top: .5rem;
+}
+</style>
+
+
+
+
+
+
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Existing computer-use agents primarily focus on general-purpose desktop automation tasks, with limited exploration of their application in highly specialized domains. In particular, the 3D building modeling process in the Architecture, Engineering, and Construction (AEC) sector involves open-ended design tasks and complex interaction patterns within Building Information Modeling (BIM) authoring software, which has yet to be thoroughly addressed by current studies. 
+          </p>
+          <p>
+            In this study, we propose <b>BIMgent</b>, an agentic framework powered by multimodal large language models (LLMs), designed to enable autonomous building model authoring via graphical user interface (GUI) operations. BIMgent automates the architectural building modeling process, including multimodal input for conceptual design, planning of software-specific workflows, and efficient execution of the authoring GUI actions. 
+          </p>
+          <p>
+            We evaluate BIMgent on real-world building modeling tasks, including both text-based conceptual design generation and reconstruction from existing building design. The design quality achieved by BIMgent was found to be reasonable. Its operations achieved a 32% success rate, whereas all baseline models failed to complete the tasks (0% success rate). Results demonstrate that BIMgent effectively reduces manual workload while preserving design intent, highlighting its potential for practical deployment in real-world architectural modeling scenarios.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+    </div>
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+
+
+
+<!-- BIMgent decomposed-actions slider  -->
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3 has-text-centered">Execution trajectories</h2>
+
+      <div class="swiper-container decomposed-slider">
+        <div class="swiper-wrapper">
+
+          <!-- slide 1 -->
+          <div class="swiper-slide video-card">
+            <h3 class="subtitle is-5 has-text-centered">User Input</h3>
+            <video autoplay controls muted loop playsinline>
+              <source src="./static/BIMgent_videos/decomposed_videos/users_input.mp4" type="video/mp4">
+            </video>
+          </div>
+
+          <!-- slide 2 -->
+          <div class="swiper-slide video-card">
+            <h3 class="subtitle is-5 has-text-centered">Floorplan Design</h3>
+            <video autoplay controls muted loop playsinline>
+              <source src="./static/BIMgent_videos/decomposed_videos/design.mp4" type="video/mp4">
+            </video>
+          </div>
+
+          <!-- slide 3 -->
+          <div class="swiper-slide video-card">
+            <h3 class="subtitle is-5 has-text-centered">Layer Creation</h3>
+            <video autoplay controls muted loop playsinline>
+              <source src="./static/BIMgent_videos/decomposed_videos/layer_creation.mp4" type="video/mp4">
+            </video>
+          </div>
+
+          <!-- slide 4 -->
+          <div class="swiper-slide video-card">
+            <h3 class="subtitle is-5 has-text-centered">External Walls Creation</h3>
+            <video autoplay controls muted loop playsinline>
+              <source src="./static/BIMgent_videos/decomposed_videos/External_wall.mp4" type="video/mp4">
+            </video>
+          </div>
+
+          <!-- slide 5 -->
+          <div class="swiper-slide video-card">
+            <h3 class="subtitle is-5 has-text-centered">Slab Creation</h3>
+            <video autoplay controls muted loop playsinline>
+              <source src="./static/BIMgent_videos/decomposed_videos/slab_creation.mp4" type="video/mp4">
+            </video>
+          </div>
+
+          <!-- slide 6 -->
+          <div class="swiper-slide video-card">
+            <h3 class="subtitle is-5 has-text-centered">Internal Walls Creation</h3>
+            <video autoplay controls muted loop playsinline>
+              <source src="./static/BIMgent_videos/decomposed_videos/Internal_wall.mp4" type="video/mp4">
+            </video>
+          </div>
+
+          <!-- slide 7 -->
+          <div class="swiper-slide video-card">
+            <h3 class="subtitle is-5 has-text-centered">Windows Creation</h3>
+            <video autoplay controls muted loop playsinline>
+              <source src="./static/BIMgent_videos/decomposed_videos/window.mp4" type="video/mp4">
+            </video>
+          </div>
+
+          <!-- slide 8 -->
+          <div class="swiper-slide video-card">
+            <h3 class="subtitle is-5 has-text-centered">Doors Creation</h3>
+            <video autoplay controls muted loop playsinline>
+              <source src="./static/BIMgent_videos/decomposed_videos/door.mp4" type="video/mp4">
+            </video>
+          </div>
+
+          <!-- slide 9 -->
+          <div class="swiper-slide video-card">
+            <h3 class="subtitle is-5 has-text-centered">Roof Creation</h3>
+            <video autoplay controls muted loop playsinline>
+              <source src="./static/BIMgent_videos/decomposed_videos/Roof.mp4" type="video/mp4">
+            </video>
+          </div>
+
+        </div>
+
+        <!-- navigation -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+/* 更大视频尺寸 */
+.decomposed-slider .video-card{
+  width:100%;
+  box-sizing:border-box;
+  padding:0 1rem;
+}
+
+.decomposed-slider video{
+  width:100%;
+  height:480px;          /* 高度再提升 */
+  border-radius:10px;
+  object-fit:contain;
+}
+
+.decomposed-slider .subtitle{
+  margin-bottom:0.8rem;  /* 标题改在上面，用 margin-bottom */
+  font-weight:600;
+}
+
+.swiper-container{
+  width:100%;
+  padding-bottom:2.5rem;
+}
+
+/* 让标题排在视频上方 */
+.decomposed-slider .video-card{
+  width:100%;
+  box-sizing:border-box;
+  padding:0 1rem;
+
+  /* 新增 ↓↓↓ */
+  display:flex;          /* 让子元素走 Flex 布局 */
+  flex-direction:column; /* 主轴改成竖直方向，标题自然在上 */
+  align-items:center;    /* 可选：让视频水平居中 */
+}
+
+.decomposed-slider .subtitle{
+  width:100%;            /* 占满整行，避免被挤到侧面 */
+  text-align:center;
+  margin-bottom:0.8rem;
+  font-weight:600;
+}
+</style>
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+new Swiper('.decomposed-slider',{
+  slidesPerView:1,           // 每屏只显示 1 个卡片
+  spaceBetween:32,
+  navigation:{
+    nextEl:'.swiper-button-next',
+    prevEl:'.swiper-button-prev'
+  },
+  pagination:{
+    el:'.swiper-pagination',
+    clickable:true
+  },
+  breakpoints:{
+    0:{slidesPerView:1},
+    768:{slidesPerView:1},
+    1024:{slidesPerView:1}
+  }
+});
+</script>
+
+
+
+
+
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+new Swiper('.bimgent-slider',{
+  slidesPerView:1,        // one slide (column) at a time
+  spaceBetween:40,
+  navigation:{
+    nextEl:'.swiper-button-next',
+    prevEl:'.swiper-button-prev'
+  },
+  pagination:{
+    el:'.swiper-pagination',
+    clickable:true
+  }
+});
+</script>
+
+<!-- ==================== Method Overview ==================== -->
+<section id="method" class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full">
+        <header class="has-text-centered mb-6">
+          <h2 class="title is-3">Method</h2>
+        </header>
+
+        <div class="content">
+          <figure class="image mb-5" style="max-width:2000px;margin-inline:auto;">
+            <img
+              src="./static/BIMgent_images/detail_workflow.png"
+              alt="Workflow diagram of the BIMgent framework, showing the Design, Action-Planning, and Execution layers."
+              style="width:100%;height:auto;display:block;"
+              loading="lazy"
+            />
+
+          </figure>
+
+          <p>
+            Overview of the <b>BIMgent</b> framework. Given the multimodal design requirements provided by the user, the <b>Design Layer</b> first transforms them into a refined floorplan and extracts the necessary semantic and geometric information to guide the modeling process. Based on the interpreted design information and domain knowledge, the <b>Action Planning</b> Layer hierarchically organizes the modeling procedure and decomposes it into detailed substeps, guided by the official software documentation. These substeps are then executed through specialized action workflows in the <b>Execution Layer</b>, each equipped with verification mechanisms. Execution trajectories are stored in a memory module, which supports both self-reflection and cooperation among different parts of the framework.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- Experiments section with figure captions (no corner labels) -->
+<section id="method" class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full">
+        <!-- ── Header ──────────────────────────────────────────────────────────── -->
+        <header class="has-text-centered mb-6">
+          <h2 class="title is-3">Experiments</h2>
+        </header>
+
+        <!-- ── Content ──────────────────────────────────────────────────────────── -->
+        <div class="content">
+          <!-- Mini Building Benchmark -->
+          <h3 class="title is-4 mb-4">Mini Building Benchmark</h3>
+
+          <p>
+            We present a <strong>Mini Building Benchmark</strong> consisting of <strong>25 BIM authoring
+            tasks</strong>. These tasks cover five input scenarios:
+          </p>
+
+          <ol>
+            <li><strong>Conceptual text descriptions</strong> of design intent, detailing the building type, room program, and one- to three-storey height.</li>
+            <li><strong>Hand-drawn sketch floor plans</strong> illustrating both regular and irregular shapes, with the specified number of floors.</li>
+            <li><strong>Unmodified floor-plan images</strong> randomly selected from the <a href="https://github.com/CubiCasa/CubiCasa5k" target="_blank">CubiCasa5K</a> dataset.</li>
+            <li>The same hand-drawn floor plans with <strong>explicit modification requests</strong> (e.g. “add a room”).</li>
+            <li>The same <a href="https://github.com/CubiCasa/CubiCasa5k" target="_blank">CubiCasa5K</a> floor plans with <strong>explicit modification instructions</strong>.</li>
+          </ol>
+
+          <!-- ── Figures: dataset distribution & design-evaluation criteria ───────── -->
+          <div class="columns is-centered mb-5">
+            <div class="column is-half">
+              <figure class="image is-3by2">
+                <img
+                  src="./static/BIMgent_images/dataset_distribution.png"
+                  alt="Dataset distribution across the five input scenarios for the Mini Building Benchmark."
+                  loading="lazy"
+                  style="object-fit: contain;"
+                />
+                <figcaption class="has-text-centered is-size-7 mt-2"><b>Task Distribution in Mini Building Benchmark</b></figcaption>
+              </figure>
+            </div>
+            <div class="column is-half">
+              <figure class="image is-3by2">
+                <img
+                  src="./static/BIMgent_images/design_eva.png"
+                  alt="Illustration of the six design-evaluation criteria"
+                  style="object-fit: contain;"
+                />
+                <figcaption class="has-text-centered is-size-7 mt-2"><b>Design Evaluation</b></figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <!-- Design Evaluation -->
+          <h3 class="title is-4 mb-3" role="heading" aria-level="3">Design Evaluation</h3>
+
+          <p>
+            We conducted a manual review to evaluate the generated floorplans against six design criteria, comparing our full design layer with two baselines:
+          </p>
+          <ol>
+            <li>SVG floorplans generated by Claude 3.7</li>
+            <li>Our design layer <em>without</em> the floorplan-interpretation module</li>
+          </ol>
+          <p>
+            The results indicate our method is a promising direction. It consistently scored above <strong>3&nbsp;/&nbsp;5</strong> on all criteria and outperformed both baselines. However, we acknowledge that the overall design quality is not yet sufficient for professional use and there remains a significant gap to bridge before the designs meet a standard satisfactory to architects.
+          </p>
+
+          <!-- Operation Evaluation -->
+          <h3 class="title is-4 mb-3" role="heading" aria-level="3">Operation Evaluation</h3>
+          <figure class="image mb-5" style="margin: 0 auto;">
+            <img
+              src="./static/BIMgent_images/eva.png"
+              alt="Comparison of design-criterion scores across methods"
+              style="display: block; width: 100%; height: auto; object-fit: contain;"
+            />
+          </figure>
+
+          <!-- Benchmark results block -->
+          <div class="content">
+            <p>
+              On the Mini Building Benchmark, BIMgent achieves a <strong>32&nbsp;%</strong> end-to-end success rate. Because overall success depends on many intermediate steps, we augmented the 25 complete modeling tasks with subtasks targeting key architectural components:
+            </p>
+            <ul>
+              <li><strong>Design layers</strong> — 41 tasks</li>
+              <li><strong>Walls</strong> — 82 tasks</li>
+              <li><strong>Slabs</strong> — 41 tasks</li>
+              <li><strong>Openings</strong> — 82 tasks</li>
+              <li><strong>Roofs</strong> — 25 tasks</li>
+            </ul>
+            <p>
+              A subtask is successful only if all required elements are created and their parameters are correctly configured. BIMgent excels at component-level subtasks, achieving <strong>86.58&nbsp;%</strong> success on walls and <strong>92.68&nbsp;%</strong> on openings. The strongest baseline (Claude&nbsp;3.7) failed every end-to-end task due to heavy planning and extensive GUI operations, and performed poorly on all subtasks.
+            </p>
+            <p>
+              Our framework also attains <strong>46.34&nbsp;%</strong> on layer and <strong>60&nbsp;%</strong> on roof tasks (vs. <strong>0&nbsp;%</strong> for the baseline), and significantly outperforms the baseline on walls, slabs, and openings. These results highlight BIMgent's potential to automate tedious modeling operations in professional BIM authoring software.
+            </p>
+          </div>
+        </div> <!-- /content -->
+      </div> <!-- /column -->
+    </div> <!-- /columns -->
+  </div> <!-- /container -->
+</section>
+
+
+<!-- ==================== Conclusion ==================== -->
+<section id="conclusion" class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full">
+        <header class="has-text-centered mb-6">
+          <h2 class="title is-3">Conclusion</h2>
+        </header>
+
+        <div class="content">
+          <p>
+            In this study, we introduce <strong>BIMgent</strong>, an agentic framework powered by multimodal LLMs, capable of autonomously generating building models within BIM authoring software through GUI operations. This paper makes the following key contributions:</p>
+          <ul>
+            <li>Compared to existing GUI agents, <strong>BIMgent</strong> demonstrates the ability to handle open-ended design tasks, bridging the gap in applying GUI agents to professional building design software.</li>
+            <li><strong>BIMgent</strong> addresses the limitations of domain-specific task handling by integrating software documentation into the planning process through a retrieval-augmented strategy.</li>
+            <li><strong>BIMgent</strong> significantly boosts performance by combining dynamic GUI grounding, reflective feedback, and hierarchical planning, thereby overcoming the challenges of complex GUIs and the hundreds of steps required for building modeling tasks.</li>
+            <li>By evaluating two stages of the framework, we show that <strong>BIMgent</strong> can complete the entire modeling process autonomously, particularly excelling in the most labor-intensive parts of the modeling workflow.</li>
+          </ul>
+          <p>
+            This paper explores an important yet under-explored question: Is it possible to achieve automated modeling in professional design software using GUI agent technology? Although current performance limitations prevent immediate deployment of the proposed approach, this framework lays a solid foundation for developing domain-specific GUI agents in high-stakes fields like architecture, engineering, and design.
+          </p>
+          <p>
+            Future work will focus on extending the framework to other design software to test its generalizability, and on optimizing the agent's step count and execution time to further reduce manual effort. Fine-tuning open-source models may also improve adaptability and performance. Additionally, we plan to develop automated evaluation methods and introduce a dedicated benchmark for more consistent and scalable assessment.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{deng2025bimgent,
+      title={BIMgent: Towards Autonomous Building Modeling via Computer-use Agents},
+      author={Deng, Zihan and Du, Changyu and Nousias, Stavros and Borrmann, Andr{\'e}},
+      journal={ICML 2025 Workshop on Computer Use Agents},
+      year={2025}
+    }</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <!-- <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div> -->
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website template is adapted from source at <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
